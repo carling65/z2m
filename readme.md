@@ -1,41 +1,40 @@
 z2m (Zoom G3 to midi foot controller)
 
-z2m��Zoom G3�܂���Zoom G3X���A���zmidi�P�[�u������邱�ƂŁA�C�ӂ�DAW��
-midi�t�b�g�R���g���[���Ƃ��Ďg�p���邱�Ƃ��\�ɂ���\�t�g�E�F�A�ł��B
+z2mはZoom G3またはZoom G3Xを、仮想midiケーブルを介することで、任意のDAWで
+midiフットコントローラとして使用することを可能にするソフトウェアです。
 
-# �K�v�Ȃ���
-Zoom G3(ver2.10) �܂��� Zoom G3X(ver2.10)
+# 必要なもの
+Zoom G3(ver2.10) または Zoom G3X(ver2.10)
 loopMIDI(http://www.tobias-erichsen.de/software/loopmidi.html)
 
-# �g�p���@
-1. Zoom G3��ŁA���ׂẴG�t�F�N�g���uT Scream�v�ɐݒ肵���p�b�`��p�ӂ���B
-2. Zoom G3��PC��USB�P�[�u���Őڑ�����B
-3. loopMIDI���N�����AName���uloopMIDI Port�v�ł��鉼�zMIDI�P�[�u�����L�邱�Ƃ��m�F����B�Ȃ���΍쐬����B
-4. Zoom G3�̂��ׂẴG�t�F�N�g�̃X�C�b�`���I�t�ɂȂ��Ă��邱�Ƃ��m�F����B
-5. z2m.exe�����s����B
-6. �y�_���𓥂ނ�loopMIDI��midi���b�Z�[�W��������B
-7. �e�����L����DAW��G�t�F�N�g�\�t�g�E�F�A�̐ݒ������B
+# 使用方法
+1. Zoom G3上で、すべてのエフェクトを「T Scream」に設定したパッチを用意する。
+2. Zoom G3とPCをUSBケーブルで接続する。
+3. loopMIDIを起動し、Nameが「loopMIDI Port」である仮想MIDIケーブルが有ることを確認する。なければ作成する。
+4. Zoom G3のすべてのエフェクトのスイッチがオフになっていることを確認する。
+5. z2m.exeを実行する。
+6. ペダルを踏むとloopMIDIにmidiメッセージが送られる。
+7. 各自所有するDAWやエフェクトソフトウェアの設定をする。
 
-# �������
-�y�_���𓥂ނƂ��̈ʒu�ɑΉ�����MIDI���b�Z�[�W�����zMIDI�|�[�g�ɑ΂��đ�����B
-�����ݒ�ł͍������珇�� B0 00,B0 01,B0 02,B0 03,B0 04,B0 05 ��������B
-���̓�B0�̕����Ɋւ��ẮAconfig.ini����STATUS_BYTE�̒l��ύX���邱�Ƃɂ���ĕύX�\�B
-�y�_���̃I���I�t�Ɋւ�炸�A�X�C�b�`�𓥂ނƓ����M�������M�����B
+# 動作説明
+ペダルを踏むとその位置に対応したMIDIメッセージが仮想MIDIポートに対して送られる。
+初期設定では左側から順に B0 00,B0 01,B0 02,B0 03,B0 04,B0 05 が送られる。
+この内B0の部分に関しては、config.ini内のSTATUS_BYTEの値を変更することによって変更可能。
+ペダルのオンオフに関わらず、スイッチを踏むと同じ信号が送信される。
 
-���L����f�o�C�X��Zoom G3X�̏ꍇ�́ASTART_SYSEX��
+所有するデバイスがZoom G3Xの場合は、START_SYSEXを
  [0x52,0x00,0x59,0x50]
-�ƕύX���Ă��������B
-�܂�MIDI OUT�ɔC�ӂ̖��O�̃|�[�g��f�o�C�X���g���ꍇ���A
-����ɍ��v����悤�� OUTPUT_DEVICE_NAME �̒l��ύX���Ă��������B
+と変更してください。
+またMIDI OUTに任意の名前のポートやデバイスを使う場合も、
+それに合致するように OUTPUT_DEVICE_NAME の値を変更してください。
 
-# �R���^�N�g
-�ӌ��A�v�]�A�s���������ꍇ�͈ȉ����B
+# コンタクト
+意見、要望、不具合等がある場合は以下より。
 http://blog.livedoor.jp/carling_65/
-https://twitter.com/LunarExcursion
 
-# �Q�l�ɂ����T�C�g �g�p�������C�u����
+# 参考にしたサイト 使用したライブラリ
 1.
-ZOOM G3X(v2.10)��MIDI�R���g���[���[�Ƃ��Ďg�� - ���ڂ�����
+ZOOM G3X(v2.10)をMIDIコントローラーとして使う - おぼえがき
 https://tpcbtw.hatenablog.com/entry/2018/06/09/173129
 
 2.
@@ -43,7 +42,7 @@ GitHub - gesellkammer/rtmidi2: python bindings to rtmidi allowing to listen to m
 https://github.com/gesellkammer/rtmidi2
 
 3.
-Python��MIDI�t�F�[�_�ƒʐM���郁���iMIDI�f�o�C�X��PC) - Qiita
+PythonでMIDIフェーダと通信するメモ（MIDIデバイス→PC) - Qiita
 https://qiita.com/Dr10_TakeHiro/items/e6df6c9b59869a74f899
 
 
@@ -81,11 +80,11 @@ Change the value of OUTPUT_DEVICE_NAME to match the value of it.
 
 # Contact.
 If you have any opinions, requests, or defects, please contact us below.
-https://twitter.com/LunarExcursion
+http://blog.livedoor.jp/carling_65/
 
 # Reference
 1.
-ZOOM G3X(v2.10)��MIDI�R���g���[���[�Ƃ��Ďg�� - ���ڂ�����
+ZOOM G3X(v2.10)をMIDIコントローラーとして使う - おぼえがき
 https://tpcbtw.hatenablog.com/entry/2018/06/09/173129
 
 2.
@@ -93,5 +92,5 @@ GitHub - gesellkammer/rtmidi2: python bindings to rtmidi allowing to listen to m
 https://github.com/gesellkammer/rtmidi2
 
 3.
-Python��MIDI�t�F�[�_�ƒʐM���郁���iMIDI�f�o�C�X��PC) - Qiita
+PythonでMIDIフェーダと通信するメモ（MIDIデバイス→PC) - Qiita
 https://qiita.com/Dr10_TakeHiro/items/e6df6c9b59869a74f899
